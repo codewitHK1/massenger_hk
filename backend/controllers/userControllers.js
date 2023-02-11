@@ -11,12 +11,12 @@ const registerUser = asycHandler(async (req, res) => {
     res.status(400);
     throw new Error("please Enter all the Fields");
   }
-  //   const userExists = User.findOne({ email });
+  // const userExists = User.findOne({ email });
 
-  //   if (userExists) {
-  //     res.status(400);
-  //     throw new Error("User already exists");
-  //   }
+  // if (userExists) {
+  //   res.status(400);
+  //   throw new Error("User already exists");
+  // }
   const user = await User.create({
     name,
     email,
@@ -35,6 +35,7 @@ const registerUser = asycHandler(async (req, res) => {
     res.status(400);
     throw new Error("Failed to Create New User");
   }
+  console.log(user);
 });
 
 const authUser = asycHandler(async (req, res) => {
