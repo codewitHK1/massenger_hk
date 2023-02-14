@@ -51,7 +51,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://massenger-frontend.vercel.app",
+    origin: "https://massenger-frontend.vercel.app/",
   },
 });
 io.on("connection", (socket) => {
