@@ -2,7 +2,7 @@
 
 const express = require("express");
 const dotenv = require("dotenv");
-
+const cors = require("cors");
 const connectDB = require("./config/db");
 const color = require("colors");
 const userRoutes = require("./routes/userRoutes");
@@ -15,6 +15,7 @@ dotenv.config();
 connectDB();
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -42,7 +43,7 @@ app.use("/api/message", messageRoutes);
 app.use(notfound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 const server = app.listen(
   PORT,
@@ -51,7 +52,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
   pingTimeout: 60000,
   cors: {
-    origin: "https://massenger-frontend.vercel.app/",
+    origin: "*",
   },
 });
 io.on("connection", (socket) => {
